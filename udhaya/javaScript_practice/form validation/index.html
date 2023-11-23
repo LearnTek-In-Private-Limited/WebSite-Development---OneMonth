@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://kit.fontawesome.com/e41f9c2f97.js"></script>
+    
+   
+</head>
+<body>
+    <div class="container">
+        <div class="head">
+            <h2>Form validation</h2>
+        </div>
+        <form action="" method="get" class="form" id="form">
+            <div class="formcontrol">
+                <label for="username">username</label>
+                <input type="text" placeholder="username" id="username" required>
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                  <small>error message</small>
+            </div>
+             <div class="formcontrol">
+                <label for="email">Email</label>
+                <input type="email" placeholder="examble@gmail.com" id="email"  required>
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <small>error message</small>
+
+            </div>
+         <div class="formcontrol">
+                <label for="Password">Password</label>
+                <input type="Password" placeholder="Password" id="Password" required> 
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <small>error message</small>
+
+            </div>
+            <div class="formcontrol">
+                <label for="ConfirmPassword">ConfirmPassword</label>
+                <input type="Password" placeholder="ConfirmPassword" id="Password2" required> 
+                <i class="fa-regular fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <small>error message</small>
+
+            </div>
+           
+                <button>submit</button>
+            
+        </form>
+    </div>
+
+
+
+    <script>
+
+const form=document.getElementById("form");
+const username=document.getElementById("username");
+const email=document.getElementById("email");
+const password=document.getElementById("Password");
+const Password2=document.getElementById("Password2");
+
+
+form.addEventListener('submit',e =>{
+  e.preventDefault();
+   checkInput();
+});
+
+function checkInput(){
+    const usernameValue=username.value.trim();
+    const emailValue= email.value.trim();
+    const passwordValue=Password.value.trim() ;
+    const password2Value=Password2.value.trim();
+
+   /*  condition */
+   if(usernameValue === ''){
+   setError(username,' username cannot be empty');
+   }
+   else{
+    setSuccess(username);
+   }
+
+   if(emailValue === ''){
+   setError(email,'Email cannot be empty');
+
+   }
+   else if(!isEmail(emailValue)) {
+    setError(email,'Not a valid Email');
+   }
+   else{
+    setSuccess(email);
+   }
+<!--password-->
+   if(passwordValue === ''){
+    setError(Password,'password cannot be empty');
+    }
+    else{
+     setSuccess(Password);
+    }
+    
+    if(Password2Value === ''){
+        setError(Password2,'confirmpassword cannot be empty');
+        }
+    else if(Password2Value !== PasswordValue){
+            setError(Password2,'confirmpassword does not match');
+            }
+    else{
+         setSuccess(Password2);
+        }
+        
+
+}
+function setError(input,message){
+const formControl=input.parentElement;
+const small=formControl.querySelector('small');
+formControl.ClassName ='formcontrol error';
+small.innerText=message;
+}
+
+function  setSuccess(input){
+const formControl=input.parentElement;
+formControl.ClassName ='formcontrol success';
+}
+
+function isEmail(){
+    return     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+
+}
+    </script>
+    
+</body>
+</html>
